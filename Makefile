@@ -38,3 +38,8 @@ endif
 
 deploy:
 	@forge script script/DeployBasicNft.s.sol:DeployBasicNft $(NETWORK_ARGS)
+
+
+
+mint:
+	@forge script script/interactions.s.sol:MintBasicNft ${NETWORK_ARGS}
