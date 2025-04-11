@@ -24,9 +24,11 @@ contract DeployMoodNftTest is Test {
 
     function testConvertSvgToUri() public view {
         string
-            memory expectedUri = "data:image/svg+xml;base64,Cjxzdmcgdmlld0JveD0iMCAwIDIwMCAyMDAiIHdpZHRoPSI0MDAiICBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIGZpbGw9InllbGxvdyIgcj0iNzgiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMyIvPjxnIGNsYXNzPSJleWVzIj48Y2lyY2xlIGN4PSI3MCIgY3k9IjgyIiByPSIxMiIvPjxjaXJjbGUgY3g9IjEyNyIgY3k9IjgyIiByPSIxMiIvPjwvZz48cGF0aCBkPSJtMTM2LjgxIDExNi41M2MuNjkgMjYuMTctNjQuMTEgNDItODEuNTItLjczIiBzdHlsZT0iZmlsbDpub25lOyBzdHJva2U6IGJsYWNrOyBzdHJva2Utd2lkdGg6IDM7Ii8+PC9zdmc+Cg==";
-        string
-            memory svg = '<svg viewBox="0 0 200 200" width="400"  height="400" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" fill="yellow" r="78" stroke="black" stroke-width="3"/><g class="eyes"><circle cx="70" cy="82" r="12"/><circle cx="127" cy="82" r="12"/></g><path d="m136.81 116.53c.69 26.17-64.11 42-81.52-.73" style="fill:none; stroke: black; stroke-width: 3;"/></svg>';
+            memory svg = '<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"><text x="200" y="250" fill="black">Hi! You decoded this! </text></svg>';
+        string memory expectedUri = string.concat(
+            "data:image/svg+xml;base64,",
+            Base64.encode(bytes(svg))
+        );
 
         string memory actualUri = deployer.svgToImageURI(svg);
         assert(

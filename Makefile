@@ -43,3 +43,7 @@ deploy:
 
 mint:
 	@forge script script/interactions.s.sol:MintBasicNft ${NETWORK_ARGS}
+
+
+deployMood:
+	@forge script script/DeployMoodNft.s.sol:DeployMoodNft $(NETWORK_ARGS)
