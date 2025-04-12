@@ -13,9 +13,7 @@ contract DeployMoodNftTest is Test {
         deployer = new DeployMoodNft();
     }
 
-    function svgToImageURI(
-        string memory svg
-    ) public pure returns (string memory) {
+    function svgToImageURI(string memory svg) public pure returns (string memory) {
         string memory baseURL = "data:image/svg+xml;base64,";
         string memory svgBase64Encoded = Base64.encode(bytes(svg));
 
@@ -23,17 +21,11 @@ contract DeployMoodNftTest is Test {
     }
 
     function testConvertSvgToUri() public view {
-        string
-            memory svg = '<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"><text x="200" y="250" fill="black">Hi! You decoded this! </text></svg>';
-        string memory expectedUri = string.concat(
-            "data:image/svg+xml;base64,",
-            Base64.encode(bytes(svg))
-        );
+        string memory svg =
+            '<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"><text x="200" y="250" fill="black">Hi! You decoded this! </text></svg>';
+        string memory expectedUri = string.concat("data:image/svg+xml;base64,", Base64.encode(bytes(svg)));
 
         string memory actualUri = deployer.svgToImageURI(svg);
-        assert(
-            keccak256(abi.encodePacked(expectedUri)) ==
-                keccak256(abi.encodePacked(actualUri))
-        );
+        assert(keccak256(abi.encodePacked(expectedUri)) == keccak256(abi.encodePacked(actualUri)));
     }
 }
